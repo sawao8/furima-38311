@@ -33,7 +33,7 @@
 ### Association
 
 - belongs_to :user
-- belongs_to :address
+- has_one :address
 - has_one :order
 
 ## addressesテーブル
@@ -50,7 +50,7 @@
 
 ### Association
 
-- has_many :items
+- belongs_to :items
 
 ## ordersテーブル
 
