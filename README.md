@@ -28,39 +28,40 @@
 | cost_id          | integer    | null: false                    |
 | sender_area_id   | integer    | null: false                    |
 | delivery_time_id | integer    | null: false                    |
-| user_id          | references | null: false, foreign_key: true |
+| user             | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
+- belongs_to :address
 - has_one :order
 
 ## addressesテーブル
 
 | Column           | Type        | Options                        |
 | ---------------- | ----------- | ------------------------------ | 
-| post_code_id     | integer     | null: false                    |
+| post_code_id     | string      | null: false                    |
 | sender_area_id   | integer     | null: false                    |
 | city             | string      | null: false                    |
 | address          | string      | null: false                    |
 | building_name    | string      |                                |
 | phone_number     | string      | null: false                    |
-| order_id         | references  | null: false, foreign_key: true |
+| order            | references  | null: false, foreign_key: true |
 
 ### Association
 
-- has_one :order
+- has_many :items
 
 ## ordersテーブル
 
-| Column    | Type       | Options                        |
-| --------- | ---------- | ------------------------------ |
-| user_id   | references | null: false, foreign_key: true |
-| item_id   | references | null: false, foreign_key: true |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :address
+
 
