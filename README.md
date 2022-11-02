@@ -14,23 +14,21 @@
 ### Association
 
 - has_many :items
-- has_one :addresses
 - has_many :orders
 
 ## itemsテーブル
 
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ | 
-| item_image    | string     | null: false                    |
-| name          | string     | null: false                    |
-| content       | string     | null: false                    |
-| category      | string     | null: false                    |
-| condition     | string     | null: false                    |
-| price         | string     | null: false                    |
-| cost          | string     | null: false                    |
-| sender_area   | string     | null: false                    |
-| delivery_time | string     | null: false                    |
-| user          | references | null: false, foreign_key: true |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ | 
+| name             | string     | null: false                    |
+| item_content     | text       | null: false                    |
+| category_id      | integer    | null: false                    |
+| condition_id     | integer    | null: false                    |
+| price            | integer    | null: false                    |
+| cost_id          | integer    | null: false                    |
+| sender_area_id   | integer    | null: false                    |
+| delivery_time_id | integer    | null: false                    |
+| user_id          | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -39,28 +37,30 @@
 
 ## addressesテーブル
 
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ | 
-| post_code     | string     | null: false                    |
-| prefectures   | string     | null: false                    |
-| city          | string     | null: false                    |
-| address       | string     | null: false                    |
-| building_name | string     |                                |
-| phone_number  | string     | null: false                    |
-| user          | references | null: false, foreign_key: true |
+| Column           | Type        | Options                        |
+| ---------------- | ----------- | ------------------------------ | 
+| post_code_id     | integer     | null: false                    |
+| sender_area_id   | integer     | null: false                    |
+| city             | string      | null: false                    |
+| address          | string      | null: false                    |
+| building_name    | string      |                                |
+| phone_number     | string      | null: false                    |
+| order_id         | references  | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to: user
+- has_one :order
 
 ## ordersテーブル
 
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| user   | references | null: false, foreign_key: true |
-| item   | references | null: false, foreign_key: true |
+| Column    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
+| user_id   | references | null: false, foreign_key: true |
+| item_id   | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
+- belongs_to :address
+
