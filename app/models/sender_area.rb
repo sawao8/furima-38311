@@ -1,5 +1,5 @@
-class SenderArea < ActiveHash::Bass
-  self.date = [
+class SenderArea < ActiveHash::Base
+  self.data = [
     { id:1, sender_area: '---'},
     { id:2, sender_area: '北海道'},
     { id:3, sender_area: '青森県'},
