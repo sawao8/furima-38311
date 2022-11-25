@@ -5,7 +5,7 @@ RSpec.describe Item, type: :model do
     @item = FactoryBot.create(:item)
     sleep 0.1
   end
-  
+
   describe '商品の出品登録' do
     context '商品の出品登録ができるとき' do
       it 'name,item_content,category,condition,cost,sender_area,delivery_time,priceが存在すれば登録できる' do
@@ -33,17 +33,17 @@ RSpec.describe Item, type: :model do
         @item.item_content = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Item content can't be blank")
-      end   
+      end
       it 'カテゴリーが空欄だと登録できない' do
-        @item.category_id = nil 
+        @item.category_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
-      end   
+      end
       it '商品の状態が空欄だと登録できない' do
         @item.condition_id = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition can't be blank") 
-      end  
+        expect(@item.errors.full_messages).to include("Condition can't be blank")
+      end
       it '配送料の負担が空欄だと登録できない' do
         @item.cost_id = nil
         @item.valid?
@@ -67,18 +67,18 @@ RSpec.describe Item, type: :model do
       it '価格の範囲が300円未満だと登録できない' do
         @item.price = '100'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+        expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
       it '価格の範囲が9,999,999円を超えると出品ができない' do
         @item.price = '10_000_000'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+        expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
       it '価格が全角だと登録できない' do
         @item.price = '３００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
-    end    
-  end      
+    end
+  end
 end

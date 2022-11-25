@@ -12,14 +12,14 @@ class Item < ApplicationRecord
     validates :sender_area_id
     validates :delivery_time_id
     validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
-  end  
+  end
   with_options numericality: { other_than: 1, message: "can't be blank" } do
     validates :category_id
     validates :condition_id
     validates :cost_id
     validates :sender_area_id
     validates :delivery_time_id
-  end  
+  end
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :condition
