@@ -39,8 +39,18 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
+      it 'カテゴリーに「---」が選択されている場合は出品できない' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category can't be blank")
+      end
       it '商品の状態が空欄だと登録できない' do
         @item.condition_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Condition can't be blank")
+      end
+      it '商品の状態に「---」が選択されている場合は出品できない' do
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
@@ -49,16 +59,31 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Cost can't be blank")
       end
-      it '発送元の地域が空欄だと登録できない' do
+      it '配送料の負担に「---」が選択されている場合は出品できない' do
+        @item.cost_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Cost can't be blank")
+      end  
+      it '発送元の地域が空欄だと登録できない' do  
         @item.sender_area_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Sender area can't be blank")
       end
+      it '発送元の地域に「---」が選択されている場合は出品できない' do
+        @item.sender_area_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Sender area can't be blank")
+      end  
       it '発送までの日数が空欄だと登録できない' do
         @item.delivery_time_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery time can't be blank")
       end
+      it '発送までの日数に「---」が選択されている場合は出品できない' do
+        @item.delivery_time_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery time can't be blank")
+      end  
       it '価格が空欄だと登録できない' do
         @item.price = nil
         @item.valid?
@@ -69,7 +94,7 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
-      it '価格の範囲が9,999,999円を超えると出品ができない' do
+      it '価格の範囲が9999999円を超えると出品ができない' do
         @item.price = '10_000_000'
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
