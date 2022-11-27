@@ -5,7 +5,7 @@ class Category < ActiveHash::Base
     { id: 3, category: 'レディース' },
     { id: 4, category: 'ベビー・キッズ' },
     { id: 5, category: 'インテリア・住まい・小物' },
-    { id: 6, category: '本。音楽・ゲーム' },
+    { id: 6, category: '本・音楽・ゲーム' },
     { id: 7, category: 'おもちゃ・ホビー・グッズ' },
     { id: 8, category: '家電・スマホ・カメラ' },
     { id: 9, category: 'スポーツ・レジャー' },
