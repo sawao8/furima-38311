@@ -62,8 +62,8 @@ RSpec.describe Item, type: :model do
         @item.cost_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Cost can't be blank")
-      end  
-      it '発送元の地域が空欄だと登録できない' do  
+      end
+      it '発送元の地域が空欄だと登録できない' do
         @item.sender_area_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Sender area can't be blank")
@@ -72,7 +72,7 @@ RSpec.describe Item, type: :model do
         @item.sender_area_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Sender area can't be blank")
-      end  
+      end
       it '発送までの日数が空欄だと登録できない' do
         @item.delivery_time_id = nil
         @item.valid?
@@ -82,7 +82,7 @@ RSpec.describe Item, type: :model do
         @item.delivery_time_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery time can't be blank")
-      end  
+      end
       it '価格が空欄だと登録できない' do
         @item.price = nil
         @item.valid?
